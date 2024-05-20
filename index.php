@@ -78,7 +78,7 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Categories</a></li>
-                    <li><a href="login.html" class="btn_login">Login</a></li>
+                    <li><a href="login.php" class="btn_login">Login</a></li>
                 </ul>
             </nav>
         </header>
@@ -133,7 +133,7 @@
                 showWallpaper(nextIndex);
             }
 
-            setInterval(nextWallpaper, 5000); // Ganti gambar setiap 5 detik
+            setInterval(nextWallpaper, 5000);
         });
         document.addEventListener("DOMContentLoaded", function () {
             const destinations = [

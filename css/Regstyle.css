@@ -1,27 +1,4 @@
-.header-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: -1;
-}
-
-.header-background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease;
-    position: absolute;
-}
-
-.header-background img.active {
-    opacity: 1;
-}
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -34,7 +11,16 @@ h1 {
     text-align: center;
     margin-top: 50px;
 }
-
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/9c/67/db/caption.jpg?w=800&h=400&s=1');
+    background-size: cover;
+    background-position: auto;
+    color: #99733b;
+}
+/* Form styles */
 form {
     max-width: 300px;
     margin: 0 auto;
@@ -48,9 +34,6 @@ form {
 form:hover {
     transform: scale(1.02);
 }
-textarea:focus {
-    border-color: #007bff;
-}
 
 label {
     display: block;
@@ -58,7 +41,7 @@ label {
     font-weight: bold;
 }
 
-input[type="name"],
+input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="submit"] {
@@ -81,12 +64,13 @@ input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-input[type="name"]:focus,
+input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     border-color: #007bff;
 }
 
+/* Link styles */
 p {
     text-align: center;
     margin-top: 10px;
@@ -98,6 +82,5 @@ p a {
 }
 
 p a:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
-

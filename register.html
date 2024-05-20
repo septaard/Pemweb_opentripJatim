@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="id">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar - YurioJavaTrip</title>
-    <link rel="stylesheet" type="text/css" href="css/Regstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/Logstyle.css">
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (name && email && password) {
+                localStorage.setItem('registeredName', name);
+                localStorage.setItem('registeredEmail', email);
+                localStorage.setItem('registeredPassword', password);
+                alert('Registrasi berhasil! Silakan login.');
+                window.location.href = 'login.html'; // Redirect to login page
+            } else {
+                alert('Mohon isi semua kolom!');
+            }
+        }
+    </script>
 </head>
 
 <body>
     <h1>Daftar di YurioJavaTrip</h1>
-    <form>
+    <form onsubmit="handleRegister(event)">
         <label for="name">Nama Lengkap:</label><br>
-        <input type="name" id="name" name="name"><br><br>
+        <input type="text" id="name" name="name"><br><br>
         
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email"><br><br>
@@ -24,5 +41,4 @@
     </form>
     <p>Sudah punya akun? <a style="text-decoration: none;" href="login.html">Masuk di sini</a>.</p>
 </body>
-
 </html>

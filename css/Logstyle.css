@@ -54,17 +54,23 @@ label {
     font-weight: bold;
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ffffff;
+    border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
 }
-
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+}
 input[type="submit"] {
     background-color: #007bff;
     color: #fff;
@@ -74,9 +80,14 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
 
 p {
+    text-decoration: none;
     text-align: center;
     margin-top: 10px;
-    color: #fff;
+    color: #ffffff;
 }

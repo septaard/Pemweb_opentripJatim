@@ -3,7 +3,7 @@
 
 <head>
     <link rel="icon" href="assets/icon.png" />
-    <title>Yurio YurioJavaTrip</title>
+    <title>Dashboard-YurioJavaTrip</title>
     <link rel="stylesheet" href="css/Lanstyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -61,61 +61,90 @@
                 transform: translateX(0%);
             }
         }
+
+        .btn_getStarted {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #21b1f900;
+            /* Warna latar belakang */
+            color: #000000;
+            /* Warna teks */
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            /* Hilangkan garis bawah pada tautan */
+            display: inline-block;
+            /* Agar elemen berperilaku seperti tombol */
+        }
+
+        .btn_getStarted:hover {
+            background-color: #2a80e2;
+            /* Warna latar belakang saat hover */
+            color: #fff;
+            /* Warna teks saat hover */
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <nav>
-                <div class="logo">
-                    <img src="assets/logo.png" alt="" />
-                </div>
-                <input type="checkbox" id="click" />
-                <label for="click" class="menu-btn">
-                    <i class="fas fa-bars"></i>
-                </label>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="login.php" class="btn_login">Login</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <div class="walpaper">
-                <div class="walpaper-text">
-                    <h1>YurioJavaTrip</h1>
-                    <p> Rencanakan Liburan Anda Segera </p>
-                    <button type="button" class="btn_getStarted">Get Started</button>
-                </div>
-                <div class="walpaper-img active">
-                    <img src="assets/download (1).jpeg" alt="gambar 1" />
-                </div>
-                <!-- <div class="walpaper-img">
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="assets/logo.png" alt="" />
+            </div>
+            <input type="checkbox" id="click" />
+            <label for="click" class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#" class="btn_login"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="walpaper">
+        <div class="walpaper-text">
+            <h1>YurioJavaTrip</h1>
+            <p> Rencanakan Liburan Anda Segera </p>
+            <a style="text-decoration: none;" href="login.php" class="btn_getStarted">Get Started</a>
+        </div>
+        <div class="walpaper-img active">
+            <img src="assets/download (1).jpeg" alt="gambar 1" />
+        </div>
+        <!-- <div class="walpaper-img">
                     <img src="assets/pantai.png" alt="Gambar 2" />
                 </div>
                 <div class="walpaper-img">
                     <img src="assets/image.png" alt="Gambar 3" />
                 </div> -->
-            </div>
-            <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack">
-                    <!-- Carousel items will be added here dynamically -->
-                </div>
-                <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+    </div>
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Carousel items will be added here dynamically -->
+        </div>
+        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <h2>Popular Destinations</h2>
+    <div class="container">
+
+        <main>
+
+
             <div class="cards-categories">
-                <h2>Popular Destinations</h2>
                 <div class="card-categories" id="destinationCards">
                 </div>
             </div>
         </main>
-        <footer>
-            <h4>&copy; 2024 YurioJavaTrip. Hak cipta dilindungi undang-undang</h4>
-        </footer>
+
     </div>
+    <footer>
+        <h4>&copy; 2024 YurioJavaTrip. Hak cipta dilindungi undang-undang</h4>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

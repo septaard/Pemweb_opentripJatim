@@ -63,27 +63,49 @@ $loggedInUsername = isset($_SESSION['loggedInUsername']) ? $_SESSION['loggedInUs
       </nav>
       <div class="home-content">
          <h3>Transaction</h3>
-         <button type="button" class="btn btn-tambah" id="btnTambahData">
-            Tambah Data
-         </button>
+         <button type="button" class="btn btn-tambah" id="btnTambahData"> Cetak transaksi </button>
          <table class="table-data">
             <thead>
                <tr>
+                  <th>No</th>
+                  <th>Tanggal</th>
                   <th>Nama</th>
                   <th>Destinasi</th>
                   <th>Harga</th>
-                  <th>Tanggal</th>
+                  <th>Status</th>
+                  <th>Kontak</th>
                   <th>Action</th>
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td>Septa</td>
-                  <td>bromo-tengger-semeru</td>
-                  <td>35000</td>
-                  <td>24-03-2024</td>
-                  <td><a href="">Edit</a> | <a href="">Hapus</a></td>
-               </tr>
+               <?php
+               include '../koneksi.php';
+               $sql = "SELECT * FROM tb_tramsaction";
+               $result = mysqli_query($koneksi, $sql);
+               if (mysqli_num_rows($result) == 0) {
+                  echo "
+                  <h3 style='text-align: center; color: blue;'>Data Kosong</h3>
+               ";
+               } else {
+                  while ($data = mysqli_fetch_assoc($result)) {
+                     echo "
+                     <tr>
+                         <td>$no</td>
+                         <td>$data[tanggal]</td>
+                         <td>$data[nama]</td>
+                         <td>$data[destinasi]</td>
+                         <td>$data[harga]</td>
+                         <td>$data[status]</td>
+                         <td>$data[nomorhp]</td>
+                             <a href='transaction-edit.php?id=$data[id]'>Edit</a> | 
+                             <a href='transaction-delete.php?id=$data[id]' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'>Hapus</a>
+                         </td>
+                     </tr>
+                     ";
+                     $no++;
+                  }
+               }
+               ?>
             </tbody>
          </table>
       </div>
@@ -98,9 +120,8 @@ $loggedInUsername = isset($_SESSION['loggedInUsername']) ? $_SESSION['loggedInUs
          } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       };
 
-
       document.getElementById('btnTambahData').addEventListener('click', function() {
-         window.location.href = "transaction-entry.php";
+         window.location.href = "transaction-cetak.php";
       });
    </script>
 </body>

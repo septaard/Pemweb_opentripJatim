@@ -1,4 +1,0 @@
-SEPTA ARDIANSYAH,tmyprkr@gmail.com,$2y$10$dahKH2JOmoJ8Qz78Yf9eQOaNaEsCdBpv4Ih9t8dfSAO7QjDEsr6iy
-asep,septadn7@gmail.com,$2y$10$Ex1Y6OcmufC6ET1GsB78B.jpIEJM72opneUXWge5cLFeyq5YeSpoi
-Tegarutomo,123@gmail.com,$2y$10$mQAlcZQApewB0KMDuXz3mOsJIzVPjhbK4kxac/IiK/641HHV.Q44S
-jelmi,tmyprkr@gmail.com,$2y$10$udf/TPP3I2ggGksD.XzCUOIIi62SkfszQ9Mml1IzUYvyiL0vTrEb6

@@ -2,288 +2,212 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="assets/icon.png" />
-    <title>Dashboard-YurioJavaTrip</title>
+    <link rel="icon" href="assets/1551887112529.png" />
+    <title>Home</title>
     <link rel="stylesheet" href="css/Lanstyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@500;700&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style>
-        .carousel-container {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-card {
-            flex: 0 0 auto;
-            margin-right: 20px;
-        }
-
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 24px;
-            color: #333;
-            padding: 10px;
-            z-index: 100;
-        }
-
-        .carousel-button.next {
-            right: 0;
-        }
-
-        .carousel-button.prev {
-            left: 0;
-        }
-
-        .carousel-track {
-            animation: slide 1s forwards;
-        }
-
-        @keyframes slide {
-            0% {
-                transform: translateX(100%);
-            }
-
-            100% {
-                transform: translateX(0%);
-            }
-        }
-
-        .btn_getStarted {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 10px;
-            background-color: #21b1f900;
-            /* Warna latar belakang */
-            color: #000000;
-            /* Warna teks */
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            text-decoration: none;
-            /* Hilangkan garis bawah pada tautan */
-            display: inline-block;
-            /* Agar elemen berperilaku seperti tombol */
-        }
-
-        .btn_getStarted:hover {
-            background-color: #2a80e2;
-            /* Warna latar belakang saat hover */
-            color: #fff;
-            /* Warna teks saat hover */
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/siema/1.5.1/siema.min.js"></script>
 </head>
 
 <body>
     <header>
         <nav>
             <div class="logo">
-                <img src="assets/logo.png" alt="" />
+                <img src="" alt="" />
             </div>
             <input type="checkbox" id="click" />
             <label for="click" class="menu-btn">
                 <i class="fas fa-bars"></i>
             </label>
             <ul>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#" class="btn_login"></a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="admin.php">Categories</a></li>
+                <li><a href="login.php" class="btn_login">Login</a></li>
             </ul>
         </nav>
     </header>
-    <div class="walpaper">
-        <div class="walpaper-text">
-            <h1>YurioJavaTrip</h1>
-            <p> Rencanakan Liburan Anda Segera </p>
-            <a style="text-decoration: none;" href="login.php" class="btn_getStarted">Get Started</a>
+    <main>
+        <div class="walpaper">
+            <div class="walpaper-text">
+                <h1>YurioJavaTrip</h1>
+                <p>Rencanakan Liburan Anda Segera</p>
+                <a href="login.php" class="btn_getStarted">Get Started</a>
+            </div>
+            <div class="walpaper-img active">
+                <img src="assets/images.png" alt="gambar 1" />
+            </div>
         </div>
-        <div class="walpaper-img active">
-            <img src="assets/download (1).jpeg" alt="gambar 1" />
-        </div>
-        <!-- <div class="walpaper-img">
-                    <img src="assets/pantai.png" alt="Gambar 2" />
-                </div>
-                <div class="walpaper-img">
-                    <img src="assets/image.png" alt="Gambar 3" />
-                </div> -->
-    </div>
-    <div class="carousel-container">
-        <div class="carousel-track" id="carouselTrack">
-            <!-- Carousel items will be added here dynamically -->
-        </div>
-        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-    </div>
-
-    <h2>Popular Destinations</h2>
-    <div class="container">
-
-        <main>
-
-
+        <div class="container">
+            <h2>Popular Destinations</h2>
             <div class="cards-categories">
-                <div class="card-categories" id="destinationCards">
+                <?php
+                include 'koneksi.php';
+                $sql = "SELECT * FROM categories";
+                $result = mysqli_query($koneksi, $sql);
+                if (mysqli_num_rows($result) == 0) {
+                    echo "<h3 style='text-align: center; color: blue;'>Data Kosong</h3>";
+                }
+                while ($data = mysqli_fetch_assoc($result)) {
+                    echo "
+                    <div class='card'>
+                        <div class='card-image'>
+                            <img src='img_categories/{$data['gambar']}' alt='tidak ada gambar' />
+                        </div>
+                        <div class='card-content'>
+                            <h5>{$data['destinasi']}</h5>
+                            <p class='harga'>{$data['deskripsi']}</p>
+                            <p class='deskripsi'>Harga: Rp {$data['harga']}</p>
+                            <button class='btn_belanja' type='button' onclick='bukaModal(\"id={$data['id_categories']}\")'>Beli</button>
+                        </div>
+                    </div>";
+                }
+                ?>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div id="myModal" class="modal-container" onclick="tutupModal()">
+            <div class="modal-dialog" onclick="event.stopPropagation()">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title " style="color:  #1f1e1e;">Formulir Pembayaran</h1>
+                        <button type="button" class="btn-close" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <input type="hidden" name="category_id" id="category_id" value="">
+                            <input type="hidden" name="category_name" id="category_name" value="">
+                            <input type="hidden" name="price" id="price" value="">
+                            <div class="form-group">
+                                <label class="labelmodal" for="recipient-name" class="col-form-label">Nama :</label>
+                                <input class="inputdata" type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="labelmodal" for="handphone" class="col-form-label">No. Hp :</label>
+                                <input class="inputdata" type="text" class="form-control" id="handphone">
+                            </div>
+                            <div class="form-group">
+                                <label class="labelmodal" for="alamat-text" class="col-form-label">Alamat:</label>
+                                <textarea class="inputalamat" class="form-control" id="alamat-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="tutupModal()">Keluar</button>
+                        <button type="button" class="btn btn-yellow" onclick="bukaModal2()">Lanjutkan</button>
+                    </div>
                 </div>
             </div>
-        </main>
-
-    </div>
+        </div>
+        <!-- Modal 2 -->
+        <div id="myModal2" class="modal-container" onclick="tutupModal2()">
+            <div class="modal-dialog" onclick="event.stopPropagation()">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" style="color:  #1f1e1e;">Detail Transaksi</h1>
+                        <button type="button" class="btn-close" aria-label="Close" onclick="tutupModal2()"></button>
+                    </div>
+                    <form action="transaction/transaction-proses.php" method="post">
+                        <div class="modal-body">
+                            <h4>kategori</h4>
+                            <label class="labelmodal" for="detail-kategori" class="col-form-label">destinasi:</label>
+                            <input class="inputdata" type="text" name="detail-kategori" class="form-control" id="detail-kategori" readonly>
+                        </div>
+                        <div class="form-group">
+                            <lafbel class="labelmodal" for="detail-harga" class="col-form-label">Harga :</label>
+                            <input class="inputdata" type="text" name="detail-harga" class="form-control" id="detail-harga" readonly>
+                        </div>
+                        <h4>Detail Pembeli</h4>
+                        <div class="form-group">
+                            <label class="labelmodal" for="detail-nama" class="col-form-label">Nama :</label>
+                            <input class="inputdata" name="detail-nama" type="text" class="form-control" id="detail-nama" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="labelmodal" for="detail-nomorhp" class="col-form-label">No. Hp :</label>
+                            <input class="inputdata" name="detail-nomor" type="text" class="form-control" id="detail-nomorhp" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="labelmodal" for="detail-alamat" class="col-form-label">Alamat:</label>
+                            <textarea class="inputalamat" name="detail-alamat" class="form-control" id="detail-alamat" readonly></textarea>
+                        </div>
+                        <input type="hidden" name="detail-status" value="succes">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="kembaliKeModalPertama()">Kembali</button>
+                    <button name="simpan" type="submit" class="btn btn-yellow" onclick="lakukanPembayaran()">Lakukan Pembayaran</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </main>
     <footer>
-        <h4>&copy; 2024 YurioJavaTrip. Hak cipta dilindungi undang-undang</h4>
+        <h4>&copy; Yuriojava Trip</h4>
     </footer>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const wallpapers = document.querySelectorAll('.walpaper-img');
-            let currentWallpaper = 0;
+        var selectedCategoryId;
+        // Fungsi Modal
+        function bukaModal(categoryId) {
+            console.log('categoryId', categoryId);
+            selectedCategoryId = categoryId;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var categoryData = JSON.parse(xhr.responseText);
 
-            function showWallpaper(index) {
-                wallpapers[currentWallpaper].classList.remove('active');
-                currentWallpaper = index;
-                wallpapers[currentWallpaper].classList.add('active');
-            }
-
-            function nextWallpaper() {
-                const nextIndex = (currentWallpaper + 1) % wallpapers.length;
-                showWallpaper(nextIndex);
-            }
-
-            setInterval(nextWallpaper, 5000);
-        });
-        document.addEventListener("DOMContentLoaded", function () {
-            const destinations = [
-                {
-                    name: "kawah Ijen",
-                    image: "assets/kawah ijen.png",
-                    description: "Gunung Ijen memiliki ketinggian 2.386 mdpl. Kawah Gunung Ijen terkenal dengan fenomena Blue Fire. Lokasinya masuk ke dalam wilayah administrasi Kabupaten Banyuwangi dan Bondowoso.3 Hari 2 Malam, Meeting Point Pasuruan",
-                    price: "30,000"
-                },
-                {
-                    name: "Bromo Tengger Semeru",
-                    image: "assets/tiket-masuk-wisata-gunung-bromo-20220716075301.jpg",
-                    description: "sebuah gunung berapi aktif di Jawa Timur, Indonesia. Gunung ini memiliki ketinggian 2.329 meter di atas permukaan laut dan berada dalam empat wilayah kabupaten, yakni Kabupaten Probolinggo, Kabupaten Pasuruan, Kabupaten Lumajang, dan Kabupaten Malang.",
-                    price: "15,000"
-                },
-                {
-                    name: "Tumpak Sewu",
-                    image: "assets/tmpksw.png",
-                    description: "Waduk Perning adalah sebuah waduk yang terletak di Kabupaten Nganjuk, Jawa Timur. Waduk ini memiliki luas 767 hektare dan berfungsi sebagai sumber irigasi, pembangkit listrik tenaga air (PLTA), dan objek wisata.",
-                    price: "10,000"
-                },
-                {
-                    name: "Air Terjun madakaripura",
-                    image: "assets/madakaripura.png",
-                    description: "Air terjun dengan ketinggian 200 meter ini dinyatakan sebagai yang tertinggi di Pulau Jawa. Lokasinya, berada di lembah sempit yang dikelilingi tebing curam, sehingga membuat pesona air terjun ini tak terkalahkan.",
-                    price: "10,000"
-                },
-                {
-                    name: "Taman Nasional Baluran",
-                    image: "assets/baluran.png",
-                    description: "Sebutan Little Africa in Java melekat pada Taman Nasional Baluran. Saat  ke sini, kamu akan langsung merasakan vibes layaknya di Afrika.Banyak hewan yang bisa kamu temui di sini seperti kerbau, banteng, hingga rusa. Tak hanya itu, Savana Bekol membuat kawasan ini menjadi makin terasa di Afrika dengan hamparan padang rumput keringnya.",
-                    price: "10,000"
+                    // Perbarui input tersembunyi
+                    document.getElementById('category_id').value = categoryId;
+                    document.getElementById('category_name').value = categoryData.categories;
+                    document.getElementById('price').value = categoryData.price;
+                    document.getElementById("myModal").style.display = "flex";
                 }
-            ];
+            };
+            xhr.open("GET", "get_kategori.php?" + categoryId, true);
+            xhr.send();
+        }
 
-            const destinationCardsContainer = document.getElementById("destinationCards");
-            const carouselTrack = document.getElementById("carouselTrack");
+        function tutupModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
 
-            // Function to create destination card
-            function createDestinationCard(destination) {
-                const card = document.createElement("div");
-                card.classList.add("card");
+        function tutupModal2() {
+            document.getElementById("myModal2").style.display = "none";
+        }
 
-                const cardImage = document.createElement("div");
-                cardImage.classList.add("card-image");
-                const image = document.createElement("img");
-                image.src = destination.image;
-                image.alt = destination.name;
-                cardImage.appendChild(image);
+        function bukaModal2() {
+            tutupModal(); // Tutup modal pertama
+            document.getElementById("myModal2").style.display = "flex";
+            
+            var nama = document.getElementById("recipient-name").value;
+            var nomorhp = document.getElementById("handphone").value;
+            var alamat = document.getElementById("alamat-text").value;
+            // kategori
+            var kategori = document.getElementById("category_name").value;
+            var harga = document.getElementById("price").value;
 
-                const cardContent = document.createElement("div");
-                cardContent.classList.add("card-content");
+            document.getElementById("detail-nama").value = nama;
+            document.getElementById("detail-nomorhp").value = nomorhp;
+            document.getElementById("detail-alamat").value = alamat;
+            document.getElementById("detail-kategori").value = kategori;
+            document.getElementById("detail-harga").value = harga;
+            // document.getElementById("category_id").value = categoryId;
+        }
 
-                const name = document.createElement("h5");
-                name.textContent = destination.name;
+        function kembaliKeModalPertama() {
+            tutupModal2();
+            bukaModal(selectedCategoryId);
+        }
 
-                const description = document.createElement("p");
-                description.classList.add("description");
-                description.textContent = destination.description;
-
-                const price = document.createElement("p");
-                price.classList.add("price");
-                price.innerHTML = `<span>Starting from Rp.</span>${destination.price}`;
-
-                const bookButton = document.createElement("button");
-                bookButton.classList.add("btn_belanja");
-                bookButton.setAttribute("type", "submit");
-                bookButton.textContent = "Book Now";
-
-                cardContent.appendChild(name);
-                cardContent.appendChild(description);
-                cardContent.appendChild(price);
-                cardContent.appendChild(bookButton);
-
-                card.appendChild(cardImage);
-                card.appendChild(cardContent);
-
-                return card;
-            }
-
-            // Populate destination cards
-            destinations.forEach(destination => {
-                const card = createDestinationCard(destination);
-                destinationCardsContainer.appendChild(card);
-            });
-
-            // Populate carousel track
-            destinations.forEach(destination => {
-                const carouselItem = createDestinationCard(destination);
-                carouselTrack.appendChild(carouselItem.cloneNode(true));
-            });
-
-            const carouselItems = document.querySelectorAll(".carousel-card");
-            const numItems = carouselItems.length;
-            const track = document.querySelector('.carousel-track');
-            let currentIndex = 0;
-
-            function showSlide(index) {
-                if (index < 0) {
-                    currentIndex = numItems - 1;
-                } else if (index >= numItems) {
-                    currentIndex = 0;
-                }
-                const itemWidth = carouselItems[0].getBoundingClientRect().width;
-                track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-            }
-
-            function nextSlide() {
-                currentIndex++;
-                showSlide(currentIndex);
-            }
-
-            function prevSlide() {
-                currentIndex--;
-                showSlide(currentIndex);
-            }
-
-            document.querySelector('.carousel-button.prev').addEventListener('click', prevSlide);
-            document.querySelector('.carousel-button.next').addEventListener('click', nextSlide);
-
-        });
+        function lakukanPembayaran() {
+            alert("Pembayaran berhasil!");
+            tutupModal2();
+            document.getElementById("recipient-name").value = "";
+            document.getElementById("handphone").value = "";
+            document.getElementById("alamat-text").value = "";
+        }
     </script>
 </body>
 
